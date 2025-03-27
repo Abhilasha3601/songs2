@@ -1,18 +1,20 @@
-package com.example.song.repository;
+package com.example.book.repository;
 
-import com.example.song.model.Song;
+import com.example.book.model.Book;
 
 import java.util.*;
 
-public interface SongRepository {
+public interface BookRepository {
 
-    ArrayList<Song> getAllSongs();
+    ArrayList<Book> gettAllBooks();
 
-    Song getSongById(int songId);
+    Book getBookById(int bookId);
 
-    Song addSong(Song song);
+    Book addBook(book book);
 
-    Song updateSong(int songId, Song song);
+    Book updateBook(int bookId, Book book);
 
-    void deleteSong(int songId);
+    void deleteBook(int bookId);
+
+    void shutdown();
 }

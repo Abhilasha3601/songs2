@@ -1,8 +1,8 @@
-package com.example.song.service;
+package com.example.book.service;
 
-import com.example.song.model.Song;
-import com.example.song.repository.SongJpaRepository;
-import com.example.song.repository.SongRepository;
+import com.example.book.model.Book;
+import com.example.book.repository.BookJpaRepository;
+import com.example.book.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -10,64 +10,69 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.*;
 
 @Service
-public class SongJpaService implements SongRepository {
+public class BookJpaService implements BookRepository {
 
     @Autowired
-    private SongJpaRepository songJpaRepository;
+    private BookJpaRepository bookJpaRepository;
 
     @Override
-    public ArrayList<Song> getAllSongs() {
-        List<Song> songList = songJpaRepository.findAll();
-        ArrayList<Song> songs = new ArrayList<>(songList);
-        return songs;
+    public ArrayList<Book> getAllBook() {
+        List<Book> bookList = bookJpaRepository.findAll();
+        ArrayList<Book> books = new ArrayList<>(bookList);
+        return books;
     }
 
     @Override
-    public Song getSongById(int songId) {
+    public Book getBookById(int bookId) {
         try {
-            Song song = songJpaRepository.findById(songId).get();
-            return song;
+            Book book = bookJpaRepository.findById(bookId).get();
+            return book;
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
 
     @Override
-    public Song addSong(Song song) {
-        songJpaRepository.save(song);
-        return song;
+    public Book addBook(Book book) {
+        songJpaRepository.save(book);
+        return book;
     }
 
     @Override
-    public Song updateSong(int songId, Song song) {
+    public Book updateBook(int bookId, Book book) {
         try {
-            Song newSong = songJpaRepository.findById(songId).get();
+            Book newBook = BookJpaRepository.findById(bookId).get();
 
-            if (song.getSongName() != null) {
-                newSong.setSongName(song.getSongName());
+            if (book.getTitle() != null) {
+                newBook.setTitle(book.getTitle());
             }
-            if (song.getLyricist() != null) {
-                newSong.setLyricist(song.getLyricist());
+            if (book.getGenre() != null) {
+                newBook.setGenre(book.getGenre());
             }
-            if (song.getSinger() != null) {
-                newSong.setSinger(song.getSinger());
+            if (book.getAuthor() != null) {
+                newBook.setAuthor(book.getAuthor());
             }
-            if (song.getMusicDirector() != null) {
-                newSong.setMusicDirector(song.getMusicDirector());
+            if (book.getAvailability() != null) {
+                newBook.setAvailability(book.getAvailability());
             }
-            songJpaRepository.save(newSong);
-            return newSong;
+            bookJpaRepository.save(newBook);
+            return newBook;
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
 
     @Override
-    public void deleteSong(int songId) {
+    public void deleteBook(int bookId) {
         try {
-            songJpaRepository.deleteById(songId);
+            bookJpaRepository.deleteById(bookId);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @Override
+    public void shutdown() {
+        shutdownService.shutdownApplication();
     }
 }

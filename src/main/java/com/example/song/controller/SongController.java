@@ -1,40 +1,47 @@
-package com.example.song.controller;
+package com.example.book.controller;
 
-import com.example.song.service.SongJpaService;
-import com.example.song.model.Song;
+import com.example.Book.service.BookJpaService;
+import com.example.Book.model.Book;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
-public class SongController {
+public class BookController {
    @Autowired
-   private SongJpaService songService;
+   private BookJpaService bookService;
 
-   @GetMapping("/songs")
-   public ArrayList<Song> getAllSongs() {
-      return songService.getAllSongs();
+   @GetMapping("/book")
+   public ArrayList<Book> getBook() {
+      return songService.getBook();
    }
 
-   @GetMapping("/songs/{songId}")
-   public Song getSongById(@PathVariable("songId") int songId) {
-      return songService.getSongById(songId);
+   @GetMapping("/book/{Id}")
+   public Book getBookById(@PathVariable("bookId") int bookId) {
+      return bookService.getBookById(bookId);
    }
 
-   @PostMapping("/songs")
-   public Song addSong(@RequestBody Song song) {
-      return songService.addSong(song);
+   @PostMapping("/book")
+   public Book addBook(@RequestBody Book book) {
+      return bookService.addBook(book);
    }
 
-   @PutMapping("/songs/{songId}")
-   public Song updateSong(@PathVariable("songId") int songId, @RequestBody Song song) {
-      return songService.updateSong(songId, song);
+   @PutMapping("/book/{bookId}")
+   public Book updateBook(@PathVariable("bookId") int bookId, @RequestBody Book book) {
+      return bookService.updateBook(bookId, book);
 
    }
 
-   @DeleteMapping("/songs/{songId}")
-   public void deleteSong(@PathVariable("songId") int songId) {
-      songService.deleteSong(songId);
+   @DeleteMapping("/book/{bookId}")
+   public void deleteBook(@PathVariable("bookId") int bookId) {
+      bookService.deleteBook(bookId);
    }
+
+   @Postapping("/exit")
+   public String exitApplication() {
+      System.exit(0);
+      return "Application is shutting down...";
+   }
+
 }

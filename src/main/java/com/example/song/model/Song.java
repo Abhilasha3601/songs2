@@ -1,76 +1,76 @@
-package com.example.song.model;
+package com.example.book.model;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "playlist")
-public class Song {
+@Table(name = "library")
+public class Book {
     @Id
-    @Column(name = "songid")
+    @Column(name = "bookid")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int songId;
+    private int bookId;
 
-    @Column(name = "songname")
-    private String songName;
+    @Column(name = "title")
+    private String title;
 
-    @Column(name = "lyricist")
-    private String lyricist;
+    @Column(name = "author")
+    private String author;
 
-    @Column(name = "singer")
-    private String singer;
+    @Column(name = "genre")
+    private String genre;
 
-    @Column(name = "musicdirector")
-    private String musicDirector;
+    @Column(name = "availability")
+    private boolean availability;
 
-    public Song() {
+    public Book() {
     }
 
-    public Song(int songId, String songName, String lyricist, String singer, String musicDirector) {
-        this.songId = songId;
-        this.songName = songName;
-        this.lyricist = lyricist;
-        this.singer = singer;
-        this.musicDirector = musicDirector;
+    public Book(int bookId, String title, String author, String genre, boolean availability) {
+        this.bookId = bookId;
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.availability = availability;
     }
 
-    public int getSongId() {
-        return songId;
+    public int getBookId() {
+        return bookid;
     }
 
-    public void setSongId(int songId) {
-        this.songId = songId;
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
     }
 
-    public String getSongName() {
-        return songName;
+    public String getTitle() {
+        return title;
     }
 
-    public void setSongName(String songName) {
-        this.songName = songName;
+    public void setTitle(String Title) {
+        this.title = title;
     }
 
-    public String getLyricist() {
-        return lyricist;
+    public String getGenre() {
+        return genre;
     }
 
-    public void setLyricist(String lyricist) {
-        this.lyricist = lyricist;
+    public void setGenre(String Genre) {
+        this.genre = genre;
     }
 
-    public String getSinger() {
-        return singer;
+    public String getAuthor() {
+        return author;
 
     }
 
-    public void setSinger(String singer) {
-        this.singer = singer;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
-    public String getMusicDirector() {
-        return musicDirector;
+    public boolean getAvailability() {
+        return availability;
     }
 
-    public void setMusicDirector(String musicDirector) {
-        this.musicDirector = musicDirector;
+    public void setAvailability(boolean availability) {
+        this.availability = availability;
     }
 }
